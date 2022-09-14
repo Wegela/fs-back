@@ -27,8 +27,8 @@ public class LivreController {
 
     // Retourne un livre spécifique à un ID
     @GetMapping("/livres/{ID}")
-    public @ResponseBody LivreDto getLivreByID(@PathVariable String ID){
-        return this.livreService.getLivreById(ID);
+    public @ResponseBody LivreDto getLivreByID(@PathVariable String id){
+        return LivreDto.fromEntity(this.livreService.getLivreById(id));
 
     }
 
@@ -40,7 +40,7 @@ public class LivreController {
 
     @PostMapping("/livres")
     public @ResponseBody LivreDto livreDTO(@Valid @RequestBody final LivreDto body) {
-        return livreService.addLivres(body.getTitre());
+        return LivreDto.fromEntity(livreService.addLivres(body.getTitre()));
     }
 
     @DeleteMapping("/livres/{id}")

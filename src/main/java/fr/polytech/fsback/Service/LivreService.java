@@ -25,4 +25,9 @@ public class LivreService {
                 .orElseThrow(() -> new NotFoundException("Livre with id " + id + " doesn't exist"));
     }
 
+    public LivreEntity addLivres(String id) {
+        return this.livreRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Livre with id " + id + " doesn't exist"));
+    }
+
 }
