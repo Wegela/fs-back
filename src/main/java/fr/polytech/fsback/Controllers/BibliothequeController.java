@@ -2,12 +2,11 @@ package fr.polytech.fsback.Controllers;
 
 import fr.polytech.fsback.Service.BibliothequeService;
 import fr.polytech.fsback.dto.BibliothequeDto;
+import fr.polytech.fsback.dto.LivreDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 @RequiredArgsConstructor
 @RestController
@@ -22,4 +21,9 @@ public class BibliothequeController {
 
     @GetMapping("/bibliotheque/{id}/livres")
     public @ResponseBody
+
+    @PostMapping("/bibliotheque/{id}/livres")
+    public @ResponseBody LivreDto livreDTO(@Valid @RequestBody final LivreDto body) {
+        return livreService.addLivres(body.getTitre());
+    }
 }
