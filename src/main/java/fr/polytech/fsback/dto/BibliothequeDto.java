@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.lang.invoke.DelegatingMethodHandle$Holder;
+
 import java.util.List;
 
 @Data
@@ -15,7 +15,7 @@ import java.util.List;
 public class BibliothequeDto {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("nom")
     private String nom;
     @JsonProperty("livres")
