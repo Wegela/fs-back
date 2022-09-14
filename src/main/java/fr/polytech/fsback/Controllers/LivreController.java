@@ -9,10 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.Math;
 import javax.persistence.Id;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @RestController()
 //@RequiredArgsConstructor
@@ -34,13 +33,18 @@ public class LivreController {
 
     // Retourne la liste complète des livres
     @GetMapping("/livres")
-    public @ResponseBody Collection<LivreDto> getLivres(){
-        return this.livreService.getLivres();
+    public @ResponseBody List<LivreDto> getLivres(){
+        return this.livreService.getLivres().stream().map(entity -> LivreDto.fromEntity(entity)).collect(Collectors.toList());
     }
 
     @PostMapping("/livres")
     public @ResponseBody LivreDto livreDTO(@Valid @RequestBody final LivreDto body) {
         return LivreDto.fromEntity(livreService.addLivres(body.getTitre()));
+    }
+
+    @PostMapping("/Livres")
+    public LivreDto postLivre(@Valid @RequestBody LivreDto l){
+        return LivreDto.fromEntity(this.livreService.addLivres(l.getTitre()));
     }
 
     @DeleteMapping("/livres/{id}")

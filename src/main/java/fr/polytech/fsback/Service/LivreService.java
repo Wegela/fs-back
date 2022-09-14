@@ -20,14 +20,18 @@ public class LivreService {
 
     private LivreRepository livreRepository;
 
+    public List<LivreEntity> getLivres() {
+        return this.livreRepository.findAll();
+    }
     public LivreEntity getLivreById(String id) {
         return this.livreRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Livre with id " + id + " doesn't exist"));
     }
 
-    public LivreEntity addLivres(String id) {
-        return this.livreRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Livre with id " + id + " doesn't exist"));
+    public LivreEntity addLivres(String titre) {
+        final LivreEntity newlivre = LivreEntity.builder().titre(titre).build();
+        this.livreRepository.save(newlivre);
+        return newlivre;
     }
 
 }
