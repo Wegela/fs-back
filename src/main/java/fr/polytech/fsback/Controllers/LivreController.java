@@ -19,7 +19,7 @@ import java.util.Random;
 @Slf4j
 public class LivreController {
 
-    public final LivreService livreService;
+    private final LivreService livreService;
 
     public LivreController(LivreService lservice) {
         this.livreService = lservice;
